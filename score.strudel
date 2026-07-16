@@ -1,0 +1,31 @@
+// first invocation
+// Calyx, 2026
+
+setcps(0.42)
+
+stack(
+  s("bd ~ ~ [bd ~]")
+    .gain("<0.92 0.72 0.84 0.64>"),
+
+  s("~ rim ~ [~ rim]")
+    .room(0.22)
+    .gain(0.42),
+
+  s("hh*8")
+    .mask("<1 0 1 1 0 1 0 1>")
+    .hpf(5200)
+    .gain(0.16),
+
+  note("<d2 ~ d2 [a1 c2]>")
+    .s("sawtooth")
+    .lpf(sine.range(180, 920).slow(8))
+    .attack(0.04)
+    .release(0.18)
+    .gain(0.34),
+
+  note("<~ f4 ~ [e4 d4]>")
+    .s("triangle")
+    .delay(0.3)
+    .room(0.6)
+    .gain(0.17)
+)

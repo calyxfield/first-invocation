@@ -1,24 +1,24 @@
 :root {
-  color-scheme: dark;
-  --paper: #e8e4d8;
-  --ink: #070707;
-  --acid: #b9ff2c;
-  --dim: #77756f;
-  --line: #2a2a27;
+  color-scheme: light;
+  --paper: #f1eee4;
+  --ink: #101114;
+  --signal: #ff4d00;
+  --blue: #173cff;
+  --dim: #686861;
+  --line: #101114;
 }
 
 * { box-sizing: border-box; }
 
-html { background: var(--ink); scroll-behavior: smooth; }
+html { background: var(--paper); scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  color: var(--paper);
+  color: var(--ink);
   background:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
-    var(--ink);
-  background-size: 32px 32px;
+    linear-gradient(rgba(16,17,20,.07) 1px, transparent 1px),
+    var(--paper);
+  background-size: 100% 24px;
   font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -26,8 +26,9 @@ header, footer {
   display: flex;
   justify-content: space-between;
   padding: 18px 24px;
-  border-bottom: 1px solid var(--line);
-  color: var(--dim);
+  border-bottom: 3px solid var(--line);
+  color: white;
+  background: var(--blue);
   font: 700 11px/1 monospace;
   letter-spacing: .14em;
 }
@@ -49,7 +50,7 @@ main { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
   text-transform: uppercase;
 }
 
-.kicker { color: var(--acid); grid-column: 1 / -1; }
+.kicker { color: var(--signal); grid-column: 1 / -1; }
 
 h1 {
   margin: 0;
@@ -74,25 +75,50 @@ h1 {
 
 .score, .visual, .credits {
   padding: 24px 0 80px;
-  border-top: 1px solid var(--line);
+  border-top: 3px solid var(--line);
 }
 
 .section-head { display: flex; justify-content: space-between; margin-bottom: 18px; }
-.section-head h2 { margin: 0; color: var(--acid); font: inherit; }
+.section-head h2 { margin: 0; color: var(--blue); font: inherit; }
 .section-head span { color: var(--dim); }
 
-strudel-editor { display: block; min-height: 520px; border: 1px solid var(--line); }
+.player-controls {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.player-controls button {
+  min-height: 52px;
+  padding: 0 22px;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  color: white;
+  background: var(--signal);
+  font: 800 13px/1 monospace;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+
+.player-controls button:nth-child(2) { color: var(--ink); background: transparent; }
+.player-controls button:disabled { opacity: .38; cursor: wait; }
+.player-controls span { justify-self: end; color: var(--dim); font: 12px/1.2 monospace; }
+
+strudel-editor { display: block; min-height: 520px; border: 3px solid var(--line); }
 
 .visual pre {
   margin: 0 0 18px;
   padding: 28px;
   overflow-x: auto;
-  border: 1px solid var(--line);
-  color: var(--acid);
+  border: 3px solid var(--blue);
+  color: white;
+  background: var(--blue);
   font: 15px/1.7 monospace;
 }
 
-.visual a { color: var(--paper); text-underline-offset: 5px; }
+.visual a { color: var(--blue); text-underline-offset: 5px; }
 
 .credits {
   display: grid;
@@ -100,17 +126,27 @@ strudel-editor { display: block; min-height: 520px; border: 1px solid var(--line
   gap: 18px 40px;
 }
 
-.credits span { color: var(--acid); }
+.credits span { color: var(--signal); }
 .credits p { margin: 0; font-size: 20px; }
 
-footer { border-top: 1px solid var(--line); border-bottom: 0; }
+footer { border-top: 3px solid var(--line); border-bottom: 0; }
 
 @media (max-width: 720px) {
   .intro { grid-template-columns: 1fr; min-height: 65vh; }
   .instruction { grid-column: 1; }
   .section-head { gap: 20px; align-items: flex-end; }
   .section-head span { text-align: right; }
+  .player-controls { grid-template-columns: 1fr 1fr; }
+  .player-controls span { grid-column: 1 / -1; justify-self: start; }
   strudel-editor { min-height: 600px; }
   .credits { grid-template-columns: 1fr; gap: 8px; }
   .credits p { margin-bottom: 24px; }
+}
+.intro h1::after {
+  content: "●";
+  display: inline-block;
+  margin-left: .08em;
+  color: var(--signal);
+  font-size: .18em;
+  vertical-align: top;
 }

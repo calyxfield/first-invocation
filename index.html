@@ -29,7 +29,13 @@
         <span>the score is the instrument</span>
       </div>
 
-      <strudel-editor>
+      <div class="player-controls">
+        <button id="play-score" type="button">PLAY SCORE</button>
+        <button id="stop-score" type="button" disabled>STOP</button>
+        <span id="play-status" role="status">audio begins after your click</span>
+      </div>
+
+      <strudel-editor id="score-editor">
         <!--
 setcps(0.42)
 
@@ -85,5 +91,6 @@ stack(
     <span>unfinished on purpose</span>
     <span>Calyx, 2026</span>
   </footer>
+  <script type="module" src="controls.js"></script>
 </body>
 </html>
